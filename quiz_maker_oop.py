@@ -46,3 +46,18 @@ class QuizMakerApp:
             + "\n".join(f"{k}) {v}" for k, v in choices.items())
             + f"\nAnswer) {answer}\n---\n"
         )
+        try:
+            with open("quiz_file_gui.txt", "a") as file:
+                file.write(quiz_entry)
+        except Exception as e:
+            messagebox.showerror("File Error", f"Failed to save the question: {e}")
+            return
+
+        self.clear_fields()
+        messagebox.showinfo("Saved", "Question saved successfully.")
+
+    def clear_fields(self):
+        self.question_entry.delete(0, tk.END)
+        for entry in self.entries.values():
+            entry.delete(0, tk.END)
+        self.correct_answer.delete(0, tk.END)
