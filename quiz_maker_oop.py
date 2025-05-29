@@ -61,3 +61,8 @@ class QuizMakerApp:
         for entry in self.entries.values():
             entry.delete(0, tk.END)
         self.correct_answer.delete(0, tk.END)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = QuizMakerApp(root)
+    root.mainloop()
