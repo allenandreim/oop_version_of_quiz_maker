@@ -24,3 +24,25 @@ class QuizMakerApp:
         tk.Label(self.root, text="Correct answer (a, b, c, d):").pack(pady=5)
         self.correct_answer = tk.Entry(self.root, width=10)
         self.correct_answer.pack()
+
+        tk.Button(self.root, text="Save Question", command=self.save_question,
+                  bg="#4CAF50", fg="white", padx=10, pady=5).pack(pady=20)
+
+    def save_question(self):
+        question = self.question_entry.get()
+        choices = {key: entry.get() for key, entry in self.entries.items()}
+        answer = self.correct_answer.get().lower()
+
+        if not question or not all(choices.values()) or not answer:
+            messagebox.showwarning("Input Error", "Please fill in all fields.")
+            return
+
+        if answer not in choices:
+            messagebox.showerror("Input Error", "Correct answer must be one of: a, b, c, d")
+            return
+
+        quiz_entry = (
+            f"Question: {question}\n"
+            + "\n".join(f"{k}) {v}" for k, v in choices.items())
+            + f"\nAnswer) {answer}\n---\n"
+        )
