@@ -92,3 +92,8 @@ class QuizApp:
         for btn in self.buttons.values():
             btn.config(state=tk.DISABLED)
         self.next_button.config(state=tk.NORMAL)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = QuizApp(root)
+    root.mainloop()
